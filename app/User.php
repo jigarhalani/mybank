@@ -27,7 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function buildings(){
-	    return $this->hasMany( 'App\Building', 'user_id' );
-    }
+	public static function boot()
+	{
+		parent::boot();
+		static::created(function ($model) {
+			$model->account()->save(new Account());
+		});
+	}
+
+	public function account(){
+		return $this->hasOne( 'App\Account', 'user_id' );
+	}
 }

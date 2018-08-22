@@ -18,8 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('balance')->default(0);
-            $table->tinyInteger('is_active')->default(1);
+	        $table->enum('is_active',[0,1])->default(1)->comment('0 means inactive and 1 means account is active');
             $table->rememberToken();
             $table->timestamps();
         });

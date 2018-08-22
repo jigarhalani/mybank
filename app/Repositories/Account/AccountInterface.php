@@ -2,9 +2,9 @@
 
 
 
-namespace App\Repositories\Room;
+namespace App\Repositories\Account;
 
-interface RoomInterface{
+interface AccountInterface {
 
 		public function save($data);
 

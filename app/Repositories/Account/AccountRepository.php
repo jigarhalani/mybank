@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Repositories\Building;
+namespace App\Repositories\Account;
 
 
 
-use App\Building;
+use App\Account;
 
 
-class BuildingRepository implements BuildingInterface{
+class AccountRepository implements BuildingInterface{
 
     public $building;
 

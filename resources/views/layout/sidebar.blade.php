@@ -32,48 +32,26 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="treeview {{ (Request::is('building/*') ? 'active' : '') }}">
-                <a href="#"><i class="fa fa-edit"></i><span>Building</span>
+            <li class="{{ (Request::is('home') ? 'active' : '') }}">
+                <a href="{{ url('home') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="treeview {{ (Request::is('account/*') ? 'active' : '') }}">
+                <a href="#"><i class="fa fa-edit"></i><span>Account</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li {{ (Request::is('building/add') ? 'class=active' : '') }}><a href="{{ url('building/add') }}">Add </a></li>
-                    <li {{ (Request::is('building/view') ? 'class=active' : '') }}><a href="{{ url('building/view') }}">View</a></li>
+                    <li {{ (Request::is('account/deposit') ? 'class=active' : '') }}><a href="{{ url('account/deposit') }}"><i class="fa fa-sign-in"></i> Deposit </a></li>
+                    <li {{ (Request::is('account/withdraw') ? 'class=active' : '') }}><a href="{{ url('account/withdraw') }}"> <i class="fa fa-sign-out"></i> Withdraw</a></li>
+                    <li {{ (Request::is('account/transfer') ? 'class=active' : '') }}><a href="{{ url('account/transfer') }}"><i class="fa  fa-credit-card"></i> Transfer</a></li>
+                    <li {{ (Request::is('account/statement') ? 'class=active' : '') }}><a href="{{ url('account/statement') }}"><i class="fa fa-list-alt"></i> Statement</a></li>
                 </ul>
 
             </li>
-
-            <li class="treeview {{ (Request::is('room/*') ? 'active' : '') }}">
-                <a href="#"><i class="fa fa-edit"></i><span>Room</span>
-                    <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li {{ (Request::is('room/add') ? 'class=active' : '') }}><a href="{{ url('room/add') }}">Add </a></li>
-                    <li {{ (Request::is('room/view') ? 'class=active' : '') }}><a href="{{ url('room/view') }}">View</a></li>
-                </ul>
-
-            </li>
-
-            <li class="treeview {{ (Request::is('tenants/*') ? 'active' : '') }}">
-                <a href="#"><i class="fa fa-edit"></i><span>Tenants</span>
-                    <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li {{ (Request::is('tenants/add') ? 'class=active' : '') }}><a href="{{ url('tenants/add') }}">Add </a></li>
-                    <li {{ (Request::is('tenants/view') ? 'class=active' : '') }}><a href="{{ url('tenants/view') }}">View</a></li>
-                </ul>
-
-            </li>
-
-
 
         </ul>
         <!-- /.sidebar-menu -->

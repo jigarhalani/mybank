@@ -3,38 +3,35 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\Building\BuildingInterface;
+use App\Repositories\Account\BuildingInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class HomeController extends Controller
+class AccountController extends Controller
 {
 
-	private $building;
 
-	public function __construct(BuildingInterface $building){
-
-			$this->building=$building;
+	public function __construct(){
 
 	}
 
 	public function index()
 	{
-		return view('admin.building.add');
+		$user=Auth::user();
+		return view('admin.dashboard',['user'=>$user]);
 	}
 
-	public function save(Request $r){
+	public function deposit(){
+		return view( 'admin.account.deposit' );
+	}
+	public function saveDeposit(Request $r){
 		try{
 
 			$rules = array(
-				'name' => 'required',
-				'area' => 'required',
-				'city' => 'required',
-				'state' => 'required',
-				'pincode' => 'required',
+				'amount' => 'required|numeric',
 			);
 			$validator = Validator::make($r->all(),$rules);
 			if ($validator->fails()){
@@ -43,7 +40,7 @@ class HomeController extends Controller
 			else{
 				$data=$r->all();
 				$data['user_id']=Auth::user()->id;
-				$this->building->save($data);
+				$this->account->save($data);
 				Session::flash('message',[
 					'msg' => 'Added successfully.Thank you!!',
 					'type' =>"alert-success"

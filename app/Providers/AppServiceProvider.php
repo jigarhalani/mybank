@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 
-use App\Repositories\Building\BuildingInterface;
-use App\Repositories\Building\BuildingRepository;
+use App\Repositories\Account\BuildingInterface;
+use App\Repositories\Account\BuildingRepository;
 
 use App\Repositories\Room\RoomInterface;
 use App\Repositories\Room\RoomRepository;
@@ -34,8 +34,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 	    Schema::defaultStringLength(191);
-	    $this->app->bind( BuildingInterface::class, BuildingRepository::class );
-	    $this->app->bind( RoomInterface::class, RoomRepository::class );
-	    $this->app->bind( TenantInterface::class, TenantRepository::class );
+
     }
 }
