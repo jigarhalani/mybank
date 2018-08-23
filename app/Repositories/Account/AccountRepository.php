@@ -6,33 +6,44 @@ namespace App\Repositories\Account;
 
 
 use App\Account;
+use App\Transaction;
+
+use App\User;
 
 
-class AccountRepository implements BuildingInterface{
+class AccountRepository implements AccountInterface {
 
-    public $building;
+    public $account;
+    public $transaction;
+    public $transfer;
 
 
-    function __construct(Building $building )
+    function __construct(Account $account , Transaction $transaction,User $user)
     {
-	    $this->building = $building;
+	    $this->account = $account;
+	    $this->transaction = $transaction;
+	    $this->user=$user;
     }
 
-	public function save($data){
-		return $this->building->create($data);
+	public function saveTransaction($data){
+		return $this->transaction->create($data);
 	}
 
-    public function get($where=['is_active'=>'1'])
+    public function getUserByEmail($email)
     {
-        return $this->building->where($where)->get();
+        return $this->user->where('email','=',$email)->first();
     }
 
 	public function update($id,$data){
-		return $this->building->where('id', '=', $id)->update($data);
+		return $this->account->where('id', '=', $id)->update($data);
 	}
 
 	public function getById($id){
-		return $this->building->find($id);
+		return $this->transfer->find($id);
+	}
+
+	public function getStatementByAccountId($account_id){
+    	return $this->transaction->where('account_id','=',$account_id)->get();
 	}
 
 

@@ -21,6 +21,10 @@ class Account extends Model
 	}
 
 	public function transaction(){
-		return $this->hasOne( 'App\Transaction', 'account_id' );
+		return $this->hasMany( 'App\Transaction', 'account_id' );
+	}
+
+	public function transfer(){
+		return $this->hasMany( 'App\Transaction', 'transfer_account_id');
 	}
 }

@@ -3,13 +3,8 @@
 namespace App\Providers;
 
 
-use App\Repositories\Account\BuildingInterface;
-use App\Repositories\Account\BuildingRepository;
-
-use App\Repositories\Room\RoomInterface;
-use App\Repositories\Room\RoomRepository;
-use App\Repositories\Tenant\TenantInterface;
-use App\Repositories\Tenant\TenantRepository;
+use App\Repositories\Account\AccountInterface;
+use App\Repositories\Account\AccountRepository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 	    Schema::defaultStringLength(191);
-
+	    $this->app->bind( AccountInterface::class, AccountRepository::class );
     }
 }

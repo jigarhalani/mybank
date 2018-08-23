@@ -12,7 +12,7 @@ class Transaction extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'account_id','type', 'is_transfer','status','amount','opening_balance','closing_balance','created_at', 'updated_at'
+		'account_id','type', 'is_transfer','status','amount','opening_balance','transfer_account_id','closing_balance','created_at', 'updated_at'
 	];
 
 	public function account(){
@@ -20,6 +20,6 @@ class Transaction extends Model
 	}
 
 	public function transfer(){
-		return $this->hasOne('App\Transfer','transaction_id');
+		return $this->belongsTo( 'App\Account', 'transfer_account_id');
 	}
 }

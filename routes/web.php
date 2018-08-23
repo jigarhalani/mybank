@@ -25,10 +25,10 @@ Route::middleware( [ 'auth' ] )->group( function () {
 	Route::group( [ 'prefix' => 'account' ], function () {
 
 		Route::get( '/deposit', 'AccountController@deposit' );
-		Route::post( '/deposit', 'AccountController@savedeposit' );
+		Route::post( '/deposit', 'AccountController@saveDeposit' );
 
 		Route::get( '/withdraw', 'AccountController@withdraw' );
-		Route::post( '/withdraw', 'AccountController@withdraw' );
+		Route::post( '/withdraw', 'AccountController@saveWithdraw' );
 
 		Route::get( '/transfer', 'AccountController@transfer' );
 		Route::post( '/transfer', 'AccountController@savetransfer' );

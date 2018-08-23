@@ -6,12 +6,10 @@ namespace App\Repositories\Account;
 
 interface AccountInterface {
 
-		public function save($data);
+		public function saveTransaction($data);
 
-        public function get($where);
 
-        public function getById($id);
+        public function getUserByEmail($email);
 
-		public function update($id,$data);
-
+		public function getStatementByAccountId($account_id);
 }

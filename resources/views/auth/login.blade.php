@@ -36,10 +36,11 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form class="form-horizontal" action="{{ route('login') }}" method="post">
+        <form class="form-horizontal" action="{{ route('login') }}" method="post" id="loginform">
             {{ csrf_field() }}
             <div class="form-group  {{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" name="email" required autofocus>
+                <div class="help-block with-errors"></div>
                 @if ($errors->has('email'))
                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -47,7 +48,8 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                <div class="help-block with-errors"></div>
                 @if ($errors->has('password'))
                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -85,6 +87,7 @@
 <!-- AdminLTE App -->
 
 <script src="{{ asset("bower_components/admin-lte/plugins/iCheck/icheck.min.js")}}"></script>
+<script src="{{ asset("js/jquery.validate.js") }}"></script>
 
 <script>
     $(function () {
@@ -93,6 +96,8 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+
+        $("#loginform").validator();
     });
 </script>
 </body>
