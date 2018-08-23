@@ -11,4 +11,6 @@ interface AccountInterface {
         public function getUserByEmail($email);
 
 		public function getStatementByAccountId($account_id);
+
+		public function update($id,$data);
 }
