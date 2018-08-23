@@ -85,7 +85,7 @@ class AccountController extends Controller {
 				$data = $r->all();
 				if ( ( Auth::user()->account->balance - $data['amount'] ) < 0 ) {
 					Session::flash( 'message', [
-						'msg'  => "You don't have this much of amount in bank.",
+						'msg'  => "You don't have sufficient funds in your account.",
 						'type' => 'alert-danger',
 					] );
 
@@ -144,7 +144,7 @@ class AccountController extends Controller {
 				}
 				else if ( ( Auth::user()->account->balance - $data['amount'] ) < 0 ) {
 					Session::flash( 'message', [
-						'msg'  => "You don't have this much of amount in bank.",
+						'msg'  => "You don't have sufficient funds in your account.",
 						'type' => 'alert-danger',
 					] );
 					return Redirect::back()->withInput( $r->all() );
