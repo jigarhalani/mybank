@@ -39,7 +39,7 @@
         <form class="form-horizontal" action="{{ route('login') }}" method="post" id="loginform">
             {{ csrf_field() }}
             <div class="form-group  {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" name="email" required autofocus>
+                <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" name="email" required autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                 <div class="help-block with-errors"></div>
                 @if ($errors->has('email'))
                     <span class="help-block">

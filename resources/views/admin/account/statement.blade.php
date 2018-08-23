@@ -23,7 +23,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Date Time</th>
+                            <th>DateTime</th>
                             <th>Amount</th>
                             <th>Type</th>
                             <th>Details</th>
@@ -58,7 +58,7 @@
                         <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Date Time</th>
+                            <th>DateTime</th>
                             <th>Amount</th>
                             <th>Type</th>
                             <th>Details</th>
@@ -78,5 +78,5 @@
 @endsection
 
 @section('script')
-    $('#statement').DataTable({"order": [[ 2, "desc" ]] });
+    $('#statement').DataTable({"order": [[ 1, "desc" ]] });
 @endsection

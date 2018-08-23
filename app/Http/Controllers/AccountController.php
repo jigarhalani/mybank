@@ -69,13 +69,6 @@ class AccountController extends Controller {
 	public function withdraw() {
 
 		$user_balance = Auth::user()->account->balance;
-		if ( $user_balance <= 0 ) {
-			Session::flash( 'message', [
-				'msg'  => "You have 0 balance in your account to withdraw amount first deposit some amount in bank.",
-				'type' => 'alert-danger',
-			] );
-		}
-
 		return view( 'admin.account.withdraw', [ 'user_balance' => $user_balance ] );
 	}
 
@@ -90,9 +83,9 @@ class AccountController extends Controller {
 				return Redirect::back()->withErrors( $validator )->withInput( $r->all() );
 			} else {
 				$data = $r->all();
-				if ( ( Auth::user()->account->balance - $data['amount'] ) <= 0 ) {
+				if ( ( Auth::user()->account->balance - $data['amount'] ) < 0 ) {
 					Session::flash( 'message', [
-						'msg'  => "You have low balance in your account to withdraw this much of amount first deposit some amount in bank.",
+						'msg'  => "You don't have this much of amount in bank.",
 						'type' => 'alert-danger',
 					] );
 
@@ -127,13 +120,6 @@ class AccountController extends Controller {
 	public function transfer() {
 
 		$user_balance = Auth::user()->account->balance;
-		if ( $user_balance <= 0 ) {
-			Session::flash( 'message', [
-				'msg'  => "You have 0 balance in your account to transfer amount first deposit some amount in bank.",
-				'type' => 'alert-danger',
-			] );
-		}
-
 		return view( 'admin.account.transfer', [ 'user_balance' => $user_balance ] );
 	}
 
@@ -156,9 +142,9 @@ class AccountController extends Controller {
 					] );
 					return Redirect::back()->withInput( $r->all() );
 				}
-				else if ( ( Auth::user()->account->balance - $data['amount'] ) <= 0 ) {
+				else if ( ( Auth::user()->account->balance - $data['amount'] ) < 0 ) {
 					Session::flash( 'message', [
-						'msg'  => "You have low balance in your account to withdraw this much of amount first deposit some amount in bank.",
+						'msg'  => "You don't have this much of amount in bank.",
 						'type' => 'alert-danger',
 					] );
 					return Redirect::back()->withInput( $r->all() );

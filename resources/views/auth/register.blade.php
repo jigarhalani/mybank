@@ -38,10 +38,10 @@
 
     <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
-        <form method="post" action="{{ route('register') }}">
+        <form method="post" action="{{ route('register') }}" id="register">
             {{ csrf_field() }}
             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }} has-feedback">
-                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus placeholder="Name">
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus placeholder="Name" required>
                 <span class="glyphicon glyphicon-user form-control-feedback "></span>
                 @if ($errors->has('name'))
                     <span class="help-block">
@@ -50,7 +50,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Email">
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -59,7 +59,7 @@
                 @endif
             </div>
             <div class="form-group has-feedback {{ $errors->has('password') ? ' has-error' : '' }}">
-                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -68,7 +68,7 @@
                 @endif
             </div>
             <div class="form-group has-feedback">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required>
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
             <div class="row">
@@ -99,7 +99,7 @@
 <!-- AdminLTE App -->
 
 <script src="{{ asset("bower_components/admin-lte/plugins/iCheck/icheck.min.js")}}"></script>
-
+<script src="{{ asset("js/jquery.validate.js") }}"></script>
 <script>
     $(function () {
         $('input').iCheck({
@@ -107,6 +107,8 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+
+        $("#register").validator();
     });
 </script>
 </body>
